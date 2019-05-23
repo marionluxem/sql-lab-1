@@ -1,0 +1,62 @@
+1. Select all the records from the "Customers" table.
+SELECT * FROM Customers;
+
+2. Get distinct countries from the Customers table.
+SELECT 'Germany' FROM Customers;
+
+3. Get all the records from the table Customers where the Customer’s ID starts with “BL”.
+SELECT * 
+FROM Customers 
+WHERE customer_id LIKE 'BL%';
+
+4. Get the first 100 records of the orders table.
+SELECT * FROM orders ORDER BY customer_id desc LIMIT 100;
+
+5. Get all customers that live in the postal codes 1010, 3012, 12209, and 05023.
+SELECT *
+FROM customers
+WHERE postal_code = '1010'
+OR postal_code = '3012'
+OR postal_code = '12209'
+OR postal_code = '05023';
+
+6. Get all orders where the ShipRegion is not equal to NULL.
+SELECT *
+FROM orders
+WHERE ship_region != 'null';
+
+7. Get all customers ordered by the country, then by the city.
+SELECT *
+FROM customers
+ORDER BY
+ country ASC,
+ city DESC;
+
+8. Add a new customer to the customers table. You can use whatever values/
+INSERT INTO customers
+(customer_id, company_name, contact_name)
+VALUES ('test', 'Grand Circus', 'Jessica Otte');
+
+9. Update all ShipRegion to the value ‘EuroZone’ in the Orders table, where the
+ShipCountry is equal to France.
+UPDATE orders
+SET ship_region = 'EuroZone'
+WHERE ship_country = 'France';
+
+10. Delete all orders from `order_details` that have a quantity of 1.
+DELETE FROM order_details WHERE quantity=1;
+
+11. Calculate the average, max, and min of the quantity at the `order details` table.
+SELECT AVG(quantity) FROM order_details;
+SELECT MAX(quantity) FROM order_details;
+SELECT MIN(quantity) FROM order_details;
+
+12. Calculate the average, max, and min of the quantity at the `order details` table,
+grouped by the orderid.
+SELECT AVG(quantity) AS "order_id" FROM order_details;
+SELECT MAX(quantity) AS "order_id" FROM order_details;
+SELECT MIN(quantity) AS "order_id" FROM order_details;
+
+13. Find the CustomerID that placed order 10290 (orders table)
+SELECT * FROM customers
+JOIN Orders ON orders.order_id = 10290;
